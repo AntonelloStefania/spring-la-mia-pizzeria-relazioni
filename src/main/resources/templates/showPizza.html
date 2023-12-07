@@ -8,6 +8,9 @@
 <body>
 	<div th:replace="frags::header"></div>
 	<div class="container">
+			<div class="col-12 text-end">
+				<a class="btn btn-success my-5 fw-bold" th:href="@{/pizza/{id}/discount/create (id=${pizza.id})}">Aggiungi offerta</a>
+			</div>
 		<div class="row">
 			<div th:replace="frags::home" class="my-5"></div>
 			<div class="col-12 text-center my-5">
@@ -16,6 +19,30 @@
 				<p>[[${pizza.description}]]</p>
 				<span class="fw-bold">Prezzo: [[${pizza.price}]]€</span>
 			</div>
+		</div>
+		<div class="row">
+			<table class="table my-5">
+			  <thead>
+			    <tr>
+			      <th scope="col">Nome Offerta</th>
+			      <th scope="col">Data inizio</th>
+			      <th scope="col">Data Fine</th>
+			      <th scope="col">Modifica</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr th:each="discount : ${pizza.discounts}"
+			    	th:object="${discount}">			      
+			      <td>[[*{name}]]</td>
+			      <td>[[*{start_date}]]</td>
+			      <td>[[*{end_date}]]</td>
+			      <td>
+					  <a class="btn btn-warning" 
+					  	 th:href="@{/pizza/{id}/discount/{discount_id}(id=${pizza.id}, discount_id=${discount.id})}">Modifica</a>
+				  	</td>
+			    </tr>			    
+			  </tbody>
+			</table>
 		</div>
 	</div>
 </body>
