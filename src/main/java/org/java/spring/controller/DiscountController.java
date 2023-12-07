@@ -64,9 +64,18 @@ public class DiscountController {
 		return "discount-form";
 	}
 	
- 
-
 	
-	
+	@PostMapping("/pizza/{id}/discount/{discount_id}")
+	public String updateDiscount(@ModelAttribute PizzaDiscountDto pizzaDiscountDto, @PathVariable int id, @PathVariable int discount_id) {
+		Pizza pizza= pizzaseService.findById(id);
+		Discount discount = discountService.findById(discount_id);
+		
+		discount.setName(pizzaDiscountDto.getName());
+		discount.setStart_date(pizzaDiscountDto.getStart_date());
+		discount.setEnd_date(pizzaDiscountDto.getEnd_date());
+		
+		discountService.saveDiscount(discount);
+		return "redirect:/";
+	}
 
 }

@@ -20,7 +20,7 @@
 				<span class="fw-bold">Prezzo: [[${pizza.price}]]€</span>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row" th:if="${!pizza.discounts.isEmpty()}">
 			<table class="table my-5">
 			  <thead>
 			    <tr>
