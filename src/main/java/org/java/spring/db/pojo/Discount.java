@@ -28,10 +28,11 @@ public class Discount {
 	
 	public Discount(){ }
 	
-	public Discount(String name, LocalDate start_date, LocalDate end_date) {
+	public Discount(String name, LocalDate start_date, LocalDate end_date, Pizza pizza) {
 		setName(name);
 		setStart_date(start_date);
 		setEnd_date(end_date);
+		setPizza(pizza);
 	}
 
 	public int getId() {
