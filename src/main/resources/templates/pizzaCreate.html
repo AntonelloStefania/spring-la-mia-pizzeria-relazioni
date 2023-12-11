@@ -37,6 +37,15 @@
 				            <input type="text" class="form-control mask-money" id="input-money"  th:field="*{price}">
 				     		<div th:replace="frags::errorDiv('price')"/>
 				     	</div>
+			     		<div class="form-group my-5 d-flex flex-wrap">
+							 <div class="col-4"
+							 	th:each="ingredient : ${ingredients}"
+							 	th:object="${ingredient}"
+							 	>								 
+					            <label th:for="${'ingredient-' + ingredient.id}" class="control-label mb-2">[[*{name}]]</label>
+					            <input type="checkbox" class="ms-3" th:id="${'ingredient-' + ingredient.id}" th:field="${pizza.ingredients}" th:value="*{id}">
+							 </div>
+				     	</div>
 				     	<div class="text-end mt-4">
 							<button type="submit" class="btn btn-success">Aggiungi</button>  
 						</div>
