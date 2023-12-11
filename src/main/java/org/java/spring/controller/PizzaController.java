@@ -2,8 +2,10 @@ package org.java.spring.controller;
 
 import java.util.List;
 
+import org.java.spring.db.pojo.Discount;
 import org.java.spring.db.pojo.Ingredient;
 import org.java.spring.db.pojo.Pizza;
+import org.java.spring.db.serv.DiscountService;
 import org.java.spring.db.serv.IngredientService;
 import org.java.spring.db.serv.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class PizzaController {
 	
 	@Autowired
 	private PizzaService pizzaService;
+	
+	@Autowired
+	private DiscountService discountService;
 	
 	@GetMapping
 	public String getPizzas(Model model,
@@ -102,6 +107,9 @@ public class PizzaController {
 	@PostMapping("/pizza/delete/{id}")
 	public String deletePizza(@PathVariable int id) {
 		Pizza pizza = pizzaService.findById(id);
+		
+		List<Discount> discounts = pizza.getDiscounts();
+		discounts.forEach(discountService::deleteDiscount);
 		pizzaService.delete(pizza);
 		
 		return "redirect:/";
