@@ -107,6 +107,9 @@ public class Pizza {
 		setIngredients(Arrays.asList(ingredients));
 		
 	}
+	public void removeIngredients(Ingredient ingredient){
+		getIngredients().remove(ingredient);
+	}
 	
 	
 }
