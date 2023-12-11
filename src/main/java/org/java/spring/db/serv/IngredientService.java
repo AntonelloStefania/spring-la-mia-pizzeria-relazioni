@@ -22,6 +22,9 @@ public class IngredientService {
 	public void save(Ingredient ingredient) {
 		ingredientRepository.save(ingredient);
 	}
+	public void delete(Ingredient ingredient) {
+		ingredientRepository.delete(ingredient);
+	}
 	
 	
 }
